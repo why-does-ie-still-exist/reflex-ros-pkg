@@ -28,7 +28,7 @@ import yaml
 import time
 
 from dynamixel_msgs.msg import JointState
-from dynamixel_msgs.msg import Encoder
+# from dynamixel_msgs.msg import Encoder
 import rospkg
 import rospy
 from std_srvs.srv import Empty
@@ -55,9 +55,10 @@ class ReflexUSBHand(ReflexHand):
         self.num_calibration_trials = 20
         rospy.Service(self.namespace + '/calibrate_manual', Empty, self.calibrate_manual)
         if (self.usb_hand_type == "reflex_plus"):
-            self.enc_subscriber = rospy.Subscriber('/encoder_states', Encoder, self._receive_enc_state_cb)
-            rospy.Service(self.namespace + '/calibrate_fingers', Empty, self.calibrate_auto)
-            self.encoder_zero_point = rospy.get_param('/enc_zero_points')
+            raise NotImplemented("You aren't supposed to be here")
+            # self.enc_subscriber = rospy.Subscriber('/encoder_states', Encoder, self._receive_enc_state_cb)
+            # rospy.Service(self.namespace + '/calibrate_fingers', Empty, self.calibrate_auto)
+            # self.encoder_zero_point = rospy.get_param('/enc_zero_points')
         else:
             rospy.Service(self.namespace + '/calibrate_fingers', Empty, self.calibrate_manual)
 
